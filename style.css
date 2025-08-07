@@ -10,7 +10,7 @@ body {
   background-image: url('logo-mdias-branco.png');
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 40%;
+  background-size: 30%;
 }
 
 header {
@@ -26,7 +26,7 @@ header {
 
 main {
   flex: 1;
-  padding: 20px;
+  padding: 40px;
   backdrop-filter: blur(4px);
 }
 
@@ -34,30 +34,31 @@ main {
 form {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  margin: 0 auto 30px;
+  max-width: 600px;
+  margin: 0 auto 40px;
   gap: 20px;
   align-items: center;
 }
 
 label {
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1.2em;
   text-align: center;
   opacity: 0;
   animation: fadeInLabel 1s forwards;
 }
 
-input[type="text"], input[type="date"] {
+input[type="text"],
+input[type="date"] {
   background-color: #f2f2f2;
   color: #333;
   font-weight: bold;
   font-size: 1.2em;
-  padding: 14px 16px;
-  border-radius: 6px;
+  padding: 16px 20px;
+  border-radius: 8px;
   border: none;
   width: 100%;
-  max-width: 300px;
+  max-width: 360px;
   text-align: center;
   box-sizing: border-box;
 }
@@ -65,10 +66,10 @@ input[type="text"], input[type="date"] {
 button {
   background-color: #007bff;
   color: white;
-  padding: 12px 20px;
-  font-size: 1em;
+  padding: 14px 26px;
+  font-size: 1.1em;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -79,48 +80,51 @@ button:hover {
 
 /* RESULTADO */
 #resultado {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 30px;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  font-size: 1.2em;
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 40px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  font-size: 1.3em;
   transition: all 0.3s ease-in-out;
   text-align: left;
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   animation: slideIn 0.5s ease forwards;
 }
 
 .shelf-box p {
-  margin: 12px 0;
-  line-height: 1.6;
+  margin: 16px 0;
+  line-height: 1.8;
 }
 
-/* CRÍTICO EM VERMELHO - DATA CRÍTICA */
+/* DATA CRÍTICA */
 .data-critica {
-  color: #ff0000;
-  font-size: 1.6em;
+  color: #000000;
+  background-color: rgba(255, 0, 0, 0.2);
+  font-size: 1.8em;
   font-weight: bold;
   text-align: center;
-  margin-top: 20px;
-  text-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
-  animation: blinkCritica 1s infinite alternate;
+  margin-top: 30px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+  animation: pulseCritica 1.5s infinite alternate;
 }
 
-@keyframes blinkCritica {
+@keyframes pulseCritica {
   from {
     transform: scale(1);
     opacity: 1;
   }
   to {
     transform: scale(1.05);
-    opacity: 0.8;
+    opacity: 0.9;
   }
 }
 
-/* ESTILOS DE CLASSIFICAÇÃO */
+/* CLASSIFICAÇÕES */
 .critico {
   background-color: #ff2800;
   color: white;
@@ -139,9 +143,9 @@ button:hover {
 /* RODAPÉ */
 footer {
   text-align: center;
-  padding: 15px;
+  padding: 20px;
   background-color: rgba(0, 0, 0, 0.3);
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 /* ANIMAÇÕES */
@@ -168,9 +172,9 @@ footer {
 }
 
 /* RESPONSIVIDADE */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .logo {
-    max-width: 100px;
+    max-width: 120px;
   }
 
   form,
@@ -178,9 +182,10 @@ footer {
     width: 90%;
   }
 
-  input[type="text"],
+  input,
   button {
     font-size: 1em;
-    padding: 10px;
+    padding: 12px;
   }
 }
+
