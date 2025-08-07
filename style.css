@@ -1,129 +1,167 @@
+/* =========================
+   STYLE.CSS - COMPLETO
+   ========================= */
+
+/* RESET BÁSICO */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* CORPO / FUNDO PADRÃO (AZUL MARINHO com logo) */
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  transition: background 0.5s ease-in-out;
+  transition: background 0.5s ease-in-out, color 0.3s ease;
+  background-color: #001f3f; /* azul marinho padrão */
+  color: #ffffff;
+  background-image: url('logo-mdias-branco.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 220px;
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* CABEÇALHO */
 header {
   text-align: center;
-  padding: 20px;
+  padding: 22px 16px;
 }
 
 .logo {
   max-width: 200px;
   display: block;
-  margin: 0 auto 10px;
+  margin: 0 auto 12px;
 }
 
+/* CONTAINER PRINCIPAL */
 main {
   flex: 1;
-  padding: 20px;
-  backdrop-filter: blur(4px);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* centraliza verticalmente conteúdo */
+  padding: 24px;
 }
 
-form {
+/* BOX CENTRAL (agrupa form + resultado) */
+.app-box {
+  width: 100%;
+  max-width: 920px;
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  margin: 0 auto 30px;
-  gap: 12px;
+  align-items: center;
+  gap: 20px;
+  padding: 18px;
 }
 
-label {
-  text-align: center;
+/* FORMULÁRIO */
+form {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  background: rgba(255,255,255,0.04);
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* LABEL COM ÍCONE */
+.label-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #00ffff;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+}
+
+/* ÍCONE SUTIL */
+.calendar-icon {
   font-size: 1.1em;
 }
 
-.label-data {
-  position: relative;
-}
-
-.calendar-icon {
-  position: absolute;
-  right: -25px;
-  top: 0;
-  font-size: 1.2em;
-}
-
-input, button {
-  padding: 12px;
-  font-size: 1em;
-  border: none;
-  border-radius: 6px;
-}
-
-input[type="text"], input[type="date"] {
+/* INPUTS */
+input[type="text"],
+input[type="date"] {
   width: 100%;
-  box-sizing: border-box;
+  max-width: 360px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 1.05em;
+  text-align: center;
+  font-weight: 700;
+  transition: border 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  -webkit-appearance: none;
 }
 
+input::placeholder {
+  color: rgba(255,255,255,0.6);
+  font-weight: 600;
+}
+
+input:focus {
+  outline: none;
+  border-color: rgba(0,255,255,0.35);
+  box-shadow: 0 6px 18px rgba(0,255,255,0.08);
+  background: rgba(255,255,255,0.12);
+}
+
+/* BOTÃO */
 button {
-  background-color: #007bff;
-  color: white;
+  width: 100%;
+  max-width: 360px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: none;
   cursor: pointer;
+  font-weight: 800;
+  font-size: 1.05em;
+  color: #001f3f;
+  background: linear-gradient(90deg, #00ffff, #00aaff);
+  transition: transform 0.12s ease, filter 0.2s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
+  transform: translateY(-2px);
+  filter: brightness(1.05);
 }
 
+/* RESULTADO - CAIXA VISÍVEL */
 #resultado {
-  max-width: 650px;
-  margin: 20px auto;
-  padding: 20px;
+  width: 100%;
+  max-width: 840px;
+  padding: 26px;
   border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.15);
+  background: rgba(0,0,0,0.25);
+  color: inherit;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.06);
+  text-align: left;
 }
 
+/* PARÁGRAFOS DENTRO DO RESULTADO */
 .shelf-box p {
-  margin: 8px 0;
-  font-size: 1.1em;
+  margin: 10px 0;
+  font-size: 1.08em;
+  line-height: 1.6;
 }
 
-footer {
-  text-align: center;
-  padding: 15px;
-  background-color: rgba(0, 0, 0, 0.3);
-  font-size: 0.9em;
-}
-
-/* Fundo dinâmico pelo resultado */
-body.otimo {
-  background: linear-gradient(135deg, #0f9b0f, #00ff95);
-  color: white;
-}
-
-body.alerta {
-  background: linear-gradient(135deg, #ffeb3b, #ff9800);
-  color: #000;
-}
-
-body.critico {
-  background: linear-gradient(135deg, #ff0000, #8b0000);
-  color: white;
-}
-
-/* Mensagem Data Crítica */
+/* MENSAGEM DATA CRÍTICA - DESTAQUE EM VERMELHO */
 .data-critica {
-  color: #000;
-  font-size: 1.8em;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 25px;
-  background-color: rgba(255, 255, 255, 0.7);
-  padding: 10px 20px;
-  border-radius: 12px;
-}
-
-/* Responsividade */
-@media (max-width: 600px) {
-  .logo {
-    max-width: 120px;
-  }
-
-  form, #resultado {
-    width: 95%;
-  }
+  display: block;
+  margin: 18p
