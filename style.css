@@ -1,52 +1,78 @@
-/* ===== RESET E BASE ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
+  margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #001F54, #00337A);
+  background-color: #001F54;
   color: white;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  background-image: url('logo-mdias-branco.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40%;
 }
 
-/* ===== CABEÇALHO ===== */
 header {
   text-align: center;
   padding: 20px;
 }
 
 .logo {
-  max-width: 180px;
+  max-width: 200px;
   display: block;
   margin: 0 auto 10px;
 }
 
-/* ===== FORMULÁRIO ===== */
+main {
+  flex: 1;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+
+/* ==== FORM FUTURISTA ==== */
 form {
   display: flex;
   flex-direction: column;
-  max-width: 600px;
-  margin: 0 auto 30px;
-  gap: 20px;
   align-items: center;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  max-width: 500px;
+  margin: 0 auto 30px;
+  gap: 15px;
 }
 
 label {
+  font-size: 1.1em;
   font-weight: bold;
-  font-size: 1.2em;
   text-align: center;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
 }
 
-input[type="text"],
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==== INPUT DE TEXTO ==== */
+input[type="text"] {
+  padding: 14px 18px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  width: 100%;
+  max-width: 360px;
+  text-align: center;
+  box-sizing: border-box;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border: 2px solid #00ffff;
+  box-shadow: 0 0 10px #00ffff;
+  outline: none;
+}
+
+/* ==== INPUT DE DATA COM ÍCONE ==== */
 input[type="date"] {
   background-color: #f2f2f2;
   color: #000;
@@ -60,76 +86,66 @@ input[type="date"] {
   text-align: center;
   box-sizing: border-box;
   transition: border 0.3s ease, box-shadow 0.3s ease;
+
+  /* Ícone de calendário */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%23000000" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.897 4 3 4.897 3 6v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zM5 20V9h14l.002 11H5z"></path></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 22px;
 }
 
-input:focus {
+input[type="date"]:focus {
   border: 2px solid #00ffff;
   box-shadow: 0 0 10px #00ffff;
   outline: none;
 }
 
+/* ==== BOTÃO ==== */
 button {
-  background: linear-gradient(90deg, #00aaff, #0077ff);
-  color: white;
-  padding: 14px 26px;
-  font-size: 1.1em;
-  border: none;
-  border-radius: 8px;
+  background-color: #00ffff;
+  color: #000;
   cursor: pointer;
-  transition: background 0.4s ease, transform 0.2s ease;
+  padding: 12px 20px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  border: none;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background: linear-gradient(90deg, #00ffff, #0099ff);
+  background-color: #00cccc;
   transform: scale(1.05);
 }
 
-/* ===== RESULTADO ===== */
+/* ==== RESULTADO ==== */
 #resultado {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 30px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 25px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
-  font-size: 1.3em;
-  text-align: left;
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  animation: fadeIn 0.5s ease forwards;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 1.2em;
 }
 
 .shelf-box p {
-  margin: 14px 0;
-  line-height: 1.6;
+  margin: 8px 0;
+  font-size: 1.1em;
 }
 
-/* ===== DATA CRÍTICA ===== */
+/* ==== MENSAGEM DATA CRÍTICA ==== */
 .data-critica {
-  color: #000000;
-  background-color: rgba(255, 255, 255, 0.85);
-  font-size: 1.8em;
+  color: #000000; /* Preto intenso */
   font-weight: bold;
+  font-size: 1.3em;
+  padding: 10px;
+  background-color: #ff4d4d;
+  border-radius: 8px;
   text-align: center;
-  margin-top: 25px;
-  padding: 12px 18px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-  animation: pulseCritica 1.5s infinite alternate;
+  margin-top: 15px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
 }
 
-@keyframes pulseCritica {
-  from {
-    transform: scale(1);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-  }
-  to {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
-  }
-}
-
-/* ===== CLASSIFICAÇÕES ===== */
+/* Shelf colors */
 .critico {
   background-color: #ff2800;
   color: white;
@@ -145,47 +161,46 @@ button:hover {
   color: white;
 }
 
-/* ===== RODAPÉ ===== */
 footer {
   text-align: center;
-  padding: 20px;
+  padding: 15px;
   background-color: rgba(0, 0, 0, 0.3);
-  font-size: 1em;
+  font-size: 0.9em;
 }
 
-/* ===== ANIMAÇÕES ===== */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===== RESPONSIVIDADE ===== */
+/* ==== RESPONSIVIDADE ==== */
 @media (max-width: 768px) {
-  body {
-    padding: 10px;
+  .logo {
+    max-width: 140px;
   }
 
-  form,
-  #resultado {
-    width: 100%;
-    padding: 20px;
+  form, #resultado {
+    width: 95%;
   }
 
-  input,
-  button {
+  input, button {
     font-size: 1em;
-    padding: 12px;
+  }
+
+  #resultado {
+    font-size: 1.1em;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    max-width: 100px;
+  }
+
+  input, button {
+    font-size: 0.95em;
+    padding: 10px;
   }
 
   .data-critica {
-    font-size: 1.4em;
-    padding: 10px;
+    font-size: 1.1em;
+    padding: 8px;
   }
 }
 
