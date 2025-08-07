@@ -1,130 +1,135 @@
-/* RESET E BASE */
-body {
+/* ===== RESET E BASE ===== */
+* {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #001F54;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-image: url('logo-mdias-branco.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 30%;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #001F54, #00337A);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== CABEÇALHO ===== */
 header {
   text-align: center;
   padding: 20px;
 }
 
 .logo {
-  max-width: 200px;
+  max-width: 180px;
   display: block;
   margin: 0 auto 10px;
 }
 
-main {
-  flex: 1;
-  padding: 40px;
-  backdrop-filter: blur(4px);
-}
-
-/* FORMULÁRIO */
+/* ===== FORMULÁRIO ===== */
 form {
   display: flex;
   flex-direction: column;
   max-width: 600px;
-  margin: 0 auto 40px;
+  margin: 0 auto 30px;
   gap: 20px;
   align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
 }
 
 label {
   font-weight: bold;
   font-size: 1.2em;
   text-align: center;
-  opacity: 0;
-  animation: fadeInLabel 1s forwards;
 }
 
 input[type="text"],
 input[type="date"] {
   background-color: #f2f2f2;
-  color: #333;
+  color: #000;
   font-weight: bold;
-  font-size: 1.2em;
-  padding: 16px 20px;
+  font-size: 1.1em;
+  padding: 14px 18px;
   border-radius: 8px;
-  border: none;
+  border: 2px solid transparent;
   width: 100%;
   max-width: 360px;
   text-align: center;
   box-sizing: border-box;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus {
+  border: 2px solid #00ffff;
+  box-shadow: 0 0 10px #00ffff;
+  outline: none;
 }
 
 button {
-  background-color: #007bff;
+  background: linear-gradient(90deg, #00aaff, #0077ff);
   color: white;
   padding: 14px 26px;
   font-size: 1.1em;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background 0.4s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(90deg, #00ffff, #0099ff);
+  transform: scale(1.05);
 }
 
-/* RESULTADO */
+/* ===== RESULTADO ===== */
 #resultado {
   max-width: 900px;
   margin: 30px auto;
-  padding: 40px;
+  padding: 30px;
   border-radius: 12px;
-  background-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
   font-size: 1.3em;
-  transition: all 0.3s ease-in-out;
   text-align: left;
   backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  animation: slideIn 0.5s ease forwards;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  animation: fadeIn 0.5s ease forwards;
 }
 
 .shelf-box p {
-  margin: 16px 0;
-  line-height: 1.8;
+  margin: 14px 0;
+  line-height: 1.6;
 }
 
-/* DATA CRÍTICA */
+/* ===== DATA CRÍTICA ===== */
 .data-critica {
   color: #000000;
-  background-color: rgba(255, 0, 0, 0.2);
+  background-color: rgba(255, 255, 255, 0.85);
   font-size: 1.8em;
   font-weight: bold;
   text-align: center;
-  margin-top: 30px;
-  padding: 10px 15px;
-  border-radius: 8px;
-  text-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+  margin-top: 25px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
   animation: pulseCritica 1.5s infinite alternate;
 }
 
 @keyframes pulseCritica {
   from {
     transform: scale(1);
-    opacity: 1;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
   }
   to {
     transform: scale(1.05);
-    opacity: 0.9;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
   }
 }
 
-/* CLASSIFICAÇÕES */
+/* ===== CLASSIFICAÇÕES ===== */
 .critico {
   background-color: #ff2800;
   color: white;
@@ -140,7 +145,7 @@ button:hover {
   color: white;
 }
 
-/* RODAPÉ */
+/* ===== RODAPÉ ===== */
 footer {
   text-align: center;
   padding: 20px;
@@ -148,19 +153,8 @@ footer {
   font-size: 1em;
 }
 
-/* ANIMAÇÕES */
-@keyframes fadeInLabel {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideIn {
+/* ===== ANIMAÇÕES ===== */
+@keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -171,21 +165,27 @@ footer {
   }
 }
 
-/* RESPONSIVIDADE */
+/* ===== RESPONSIVIDADE ===== */
 @media (max-width: 768px) {
-  .logo {
-    max-width: 120px;
+  body {
+    padding: 10px;
   }
 
   form,
   #resultado {
-    width: 90%;
+    width: 100%;
+    padding: 20px;
   }
 
   input,
   button {
     font-size: 1em;
     padding: 12px;
+  }
+
+  .data-critica {
+    font-size: 1.4em;
+    padding: 10px;
   }
 }
 
