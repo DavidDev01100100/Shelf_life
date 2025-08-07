@@ -8,25 +8,24 @@
 </head>
 <body id="body">
   <header>
-    <img src="logo-mdias-branco.png" alt="Logo M.Dias" class="logo" />
+    <img src="logo-mdias-branco.png" alt="Logo M.Dias" class="logo"/>
     <h1>Consulta de Shelf Life</h1>
   </header>
 
   <main>
     <form id="shelfForm">
       <label for="sku" class="animated-label">SKU:</label>
-      <input type="text" id="sku" name="sku" required />
+      <input type="text" id="sku" name="sku" required placeholder="Digite o SKU" />
 
-      <label for="dataVencimento" class="animated-label">Data de Vencimento:</label>
-      <div class="input-wrapper">
-        <input
-          type="date"
-          id="dataVencimento"
-          name="dataVencimento"
-          placeholder="dd/mm/aa"
-          required
-        />
-      </div>
+      <label for="dataVencimento" class="animated-label">Data de Vencimento (DD/MM/AA):</label>
+      <input
+        type="text"
+        id="dataVencimento"
+        name="dataVencimento"
+        placeholder="DD/MM/AA"
+        required
+        maxlength="8"
+      />
 
       <button type="submit">Consultar</button>
     </form>
@@ -35,7 +34,7 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 David Alves - Todos os direitos reservados.</p>
+    <p>&copy; 2025 David Alves. Todos os direitos reservados.</p>
   </footer>
 
   <script src="produtos_formatados.js"></script>
