@@ -1,9 +1,16 @@
-document.getElementById('shelfForm').addEventListener('submit', function(event) {
+document.getElementById('shelfForm').addEventListener('submit', function (event) {
   event.preventDefault();
 
   const sku = document.getElementById('sku').value.trim();
   const dataVencimentoRaw = document.getElementById('dataVencimento').value;
-  const dataVencimento = new Date(dataVencimentoRaw);
+
+  function parseDateBR(dataStr) {
+    const [dd, mm, yy] = dataStr.split('/');
+    const fullYear = Number(yy) < 50 ? '20' + yy : '19' + yy;
+    return new Date(`${fullYear}-${mm}-${dd}`);
+  }
+
+  const dataVencimento = parseDateBR(dataVencimentoRaw);
   const produto = produtos.find(p => String(p.SKU) === sku);
 
   const resultadoDiv = document.getElementById('resultado');
@@ -17,31 +24,26 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
   }
 
   const diasShelf = parseInt(produto.DiasVencer, 10);
-
   const hoje = new Date();
-  const diasRestantes = Math.floor((dataVencimento - hoje) / (1000 * 60 * 60 * 24));
-  const diasCorridos = diasShelf - diasRestantes;
 
+  const diasRestantes = Math.floor((dataVencimento - hoje) / (1000 * 60 * 60 * 24));
   const porcentagem = Math.max(0, Math.min(100, Math.floor((diasRestantes / diasShelf) * 100)));
 
   let nivel = "";
   let bgClass = "";
-  let mensagemCritica = "";
+  let dataCriticaMsg = "";
 
-  if (porcentagem <= 60) {
-    nivel = "Shelf Crítico";
-    bgClass = "critico";
-    mensagemCritica = "<p style='color:red; font-weight:bold;'>DATA CRÍTICA</p>";
-  } else if (porcentagem <= 79) {
+  if (porcentagem >= 80) {
+    nivel = "Shelf Ótimo";
+    bgClass = "otimo";
+  } else if (porcentagem >= 61) {
     nivel = "Alerta Shelf";
     bgClass = "alerta";
   } else {
-    nivel = "Shelf Ótimo";
-    bgClass = "otimo";
+    nivel = "Shelf Crítico";
+    bgClass = "critico";
+    dataCriticaMsg = `<p style="color:red"><strong>DATA CRÍTICA</strong></p>`;
   }
-
-  const dataFabricacao = new Date(dataVencimento);
-  dataFabricacao.setDate(dataVencimento.getDate() - diasShelf);
 
   function formatDDMMYY(date) {
     const dd = String(date.getDate()).padStart(2, '0');
@@ -49,6 +51,9 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
     const yy = String(date.getFullYear()).slice(-2);
     return `${dd}/${mm}/${yy}`;
   }
+
+  const dataFabricacao = new Date(dataVencimento);
+  dataFabricacao.setDate(dataFabricacao.getDate() - diasShelf);
 
   body.className = bgClass;
   resultadoDiv.innerHTML = `
@@ -59,8 +64,19 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
       <p><strong>Data de Vencimento:</strong> ${formatDDMMYY(dataVencimento)}</p>
       <p><strong>Dias Restantes:</strong> ${diasRestantes} dias</p>
       <p><strong>Classificação Shelf:</strong> ${nivel} (${porcentagem}%)</p>
-      ${mensagemCritica}
+      ${dataCriticaMsg}
     </div>
   `;
+});
+
+// Máscara de entrada para DD/MM/AA
+document.getElementById('dataVencimento').addEventListener('input', function (e) {
+  let input = e.target.value.replace(/\D/g, '').slice(0, 6);
+  if (input.length >= 5) {
+    input = input.replace(/(\d{2})(\d{2})(\d{0,2})/, '$1/$2/$3');
+  } else if (input.length >= 3) {
+    input = input.replace(/(\d{2})(\d{0,2})/, '$1/$2');
+  }
+  e.target.value = input;
 });
 
