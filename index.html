@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta de Shelf Life</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="body">
+  <header>
+    <img src="logo-mdias-branco.png" alt="Logo M.Dias" class="logo">
+    <h1>Consulta de Shelf Life</h1>
+  </header>
+
+  <main>
+    <form id="shelfForm">
+      <label for="sku">SKU:</label>
+      <input type="text" id="sku" name="sku" required>
+
+      <label for="dataFabricacao">Data de Fabricação:</label>
+      <input type="date" id="dataFabricacao" name="dataFabricacao" required>
+
+      <button type="submit">Consultar</button>
+    </form>
+
+    <div id="resultado"></div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 David Alves Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="produtos_formatados.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
