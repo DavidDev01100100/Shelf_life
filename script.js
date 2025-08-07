@@ -2,7 +2,7 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
   event.preventDefault();
 
   const sku = document.getElementById('sku').value.trim();
-  const dataVencimentoRaw = document.getElementById('dataVencimento').value;
+  const dataVencimentoRaw = document.getElementById('dataFabricacao').value;
   const dataVencimento = new Date(dataVencimentoRaw);
   const produto = produtos.find(p => String(p.SKU) === sku);
 
@@ -18,13 +18,10 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
 
   const diasShelf = parseInt(produto.DiasVencer, 10);
 
-  // Calcular data de fabricação, opcional
   const dataFabricacao = new Date(dataVencimento);
   dataFabricacao.setDate(dataFabricacao.getDate() - diasShelf);
 
   const hoje = new Date();
-
-  // Calcular dias restantes até vencimento
   const diasRestantes = Math.floor((dataVencimento - hoje) / (1000 * 60 * 60 * 24));
   const porcentagem = Math.max(0, Math.min(100, Math.floor((diasRestantes / diasShelf) * 100)));
 
