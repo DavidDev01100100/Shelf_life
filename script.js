@@ -2,8 +2,8 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
   event.preventDefault();
 
   const sku = document.getElementById('sku').value.trim();
-  const dataFabricacaoRaw = document.getElementById('dataFabricacao').value;
-  const dataFabricacao = new Date(dataFabricacaoRaw);
+  const dataVencimentoRaw = document.getElementById('dataVencimento').value;
+  const dataVencimento = new Date(dataVencimentoRaw);
   const produto = produtos.find(p => String(p.SKU) === sku);
 
   const resultadoDiv = document.getElementById('resultado');
@@ -17,10 +17,14 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
   }
 
   const diasShelf = parseInt(produto.DiasVencer, 10);
-  const dataVencimento = new Date(dataFabricacao);
-  dataVencimento.setDate(dataVencimento.getDate() + diasShelf);
+
+  // Calcular data de fabricação, opcional
+  const dataFabricacao = new Date(dataVencimento);
+  dataFabricacao.setDate(dataFabricacao.getDate() - diasShelf);
 
   const hoje = new Date();
+
+  // Calcular dias restantes até vencimento
   const diasRestantes = Math.floor((dataVencimento - hoje) / (1000 * 60 * 60 * 24));
   const porcentagem = Math.max(0, Math.min(100, Math.floor((diasRestantes / diasShelf) * 100)));
 
@@ -38,7 +42,6 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
     bgClass = "critico";
   }
 
-  // Função auxiliar para formatar data em DD/MM/YY
   function formatDDMMYY(date) {
     const dd = String(date.getDate()).padStart(2, '0');
     const mm = String(date.getMonth() + 1).padStart(2, '0');
@@ -51,10 +54,11 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
     <div class="shelf-box">
       <p><strong>SKU:</strong> ${produto.SKU}</p>
       <p><strong>Descrição:</strong> ${produto.Descricao}</p>
-      <p><strong>Data de Fabricação:</strong> ${formatDDMMYY(dataFabricacao)}</p>
+      <p><strong>Data de Fabricação (estimada):</strong> ${formatDDMMYY(dataFabricacao)}</p>
       <p><strong>Data de Vencimento:</strong> ${formatDDMMYY(dataVencimento)}</p>
       <p><strong>Dias Restantes:</strong> ${diasRestantes} dias</p>
       <p><strong>Classificação Shelf:</strong> ${nivel} (${porcentagem}%)</p>
     </div>
   `;
 });
+
