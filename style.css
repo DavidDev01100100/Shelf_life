@@ -1,13 +1,16 @@
-/* ==== ESTILO GERAL ==== */
+/* RESET E BASE */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #001F54, #002f6c, #001F54);
+  background-color: #001F54;
   color: white;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-attachment: fixed;
+  background-image: url('logo-mdias-branco.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30%;
 }
 
 header {
@@ -23,105 +26,105 @@ header {
 
 main {
   flex: 1;
-  padding: 20px;
-  backdrop-filter: blur(6px);
+  padding: 40px;
+  backdrop-filter: blur(4px);
 }
 
-/* ==== FORMULÁRIO ==== */
+/* FORMULÁRIO */
 form {
   display: flex;
   flex-direction: column;
-  max-width: 420px;
-  margin: 0 auto 30px;
-  gap: 14px;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  gap: 20px;
+  align-items: center;
 }
 
 label {
-  font-size: 1.1em;
   font-weight: bold;
+  font-size: 1.2em;
   text-align: center;
-  color: #00ffff;
-  letter-spacing: 1px;
-}
-
-/* Label com ícone de calendário */
-label[for="data"] {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-label[for="data"]::after {
-  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="%2300ffff" viewBox="0 0 24 24" width="20" height="20"><path d="M19 4h-1V2h-2v2H8V2H6v2H5C3.897 4 3 4.897 3 6v14c0 1.103.897 2 2 2h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zM5 20V9h14v11H5z"/></svg>');
-}
-
-input, button {
-  padding: 12px;
-  font-size: 1.05em;
-  border: none;
-  border-radius: 6px;
-  outline: none;
+  opacity: 0;
+  animation: fadeInLabel 1s forwards;
 }
 
 input[type="text"],
 input[type="date"] {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
+  font-size: 1.2em;
+  padding: 16px 20px;
+  border-radius: 8px;
+  border: none;
+  width: 100%;
+  max-width: 360px;
   text-align: center;
-  font-weight: bold;
+  box-sizing: border-box;
 }
 
-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* ==== BOTÃO ==== */
 button {
-  background: linear-gradient(90deg, #00ffff, #007bff);
+  background-color: #007bff;
   color: white;
-  font-weight: bold;
+  padding: 14px 26px;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  background: linear-gradient(90deg, #007bff, #00ffff);
-  transform: scale(1.05);
+  background-color: #0056b3;
 }
 
-/* ==== RESULTADO ==== */
+/* RESULTADO */
 #resultado {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.08);
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 40px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  font-size: 1.3em;
+  transition: all 0.3s ease-in-out;
+  text-align: left;
   backdrop-filter: blur(6px);
-  box-shadow: 0 0 12px rgba(0, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  animation: slideIn 0.5s ease forwards;
 }
 
 .shelf-box p {
-  margin: 8px 0;
-  font-size: 1.1em;
+  margin: 16px 0;
+  line-height: 1.8;
 }
 
-/* ==== MENSAGEM DATA CRÍTICA ==== */
+/* DATA CRÍTICA */
 .data-critica {
-  color: #000000; /* Preto intenso */
-  font-weight: 900;
-  font-size: 1.4em;
-  padding: 12px 18px;
-  background-color: #ff4d4d;
-  border-radius: 8px;
+  color: #000000;
+  background-color: rgba(255, 0, 0, 0.2);
+  font-size: 1.8em;
+  font-weight: bold;
   text-align: center;
-  margin: 20px auto;
-  max-width: 400px;
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
-  display: block;
+  margin-top: 30px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+  animation: pulseCritica 1.5s infinite alternate;
 }
 
-/* ==== CORES DE CLASSIFICAÇÃO ==== */
+@keyframes pulseCritica {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+/* CLASSIFICAÇÕES */
 .critico {
   background-color: #ff2800;
   color: white;
@@ -137,34 +140,52 @@ button:hover {
   color: white;
 }
 
-/* ==== RODAPÉ ==== */
+/* RODAPÉ */
 footer {
   text-align: center;
-  padding: 15px;
+  padding: 20px;
   background-color: rgba(0, 0, 0, 0.3);
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
-/* ==== RESPONSIVIDADE ==== */
-@media (max-width: 600px) {
+/* ANIMAÇÕES */
+@keyframes fadeInLabel {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
   .logo {
     max-width: 120px;
   }
 
-  form, #resultado {
-    width: 95%;
+  form,
+  #resultado {
+    width: 90%;
   }
 
-  input, button {
+  input,
+  button {
     font-size: 1em;
-    padding: 10px;
-  }
-
-  .data-critica {
-    font-size: 1.2em;
-    padding: 10px;
+    padding: 12px;
   }
 }
-
-
 
