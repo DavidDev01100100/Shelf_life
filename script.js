@@ -21,22 +21,23 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
   dataVencimento.setDate(dataVencimento.getDate() + diasShelf);
 
   const hoje = new Date();
-  const diasPassados = Math.floor((hoje - dataFabricacao) / (1000 * 60 * 60 * 24));
-  const diasRestantes = diasShelf - diasPassados;
+  const diasRestantes = Math.floor((dataVencimento - hoje) / (1000 * 60 * 60 * 24));
   const porcentagem = Math.max(0, Math.min(100, Math.floor((diasRestantes / diasShelf) * 100)));
 
   let nivel = "";
   let bgClass = "";
+  let mensagemCritica = "";
 
-  if (porcentagem >= 80) {
-    nivel = "Shelf Ótimo";
-    bgClass = "otimo";
-  } else if (porcentagem >= 61) {
+  if (porcentagem <= 60) {
+    nivel = "Shelf Crítico";
+    bgClass = "critico";
+    mensagemCritica = "<p style='color:red; font-weight:bold;'>DATA CRÍTICA</p>";
+  } else if (porcentagem <= 79) {
     nivel = "Alerta Shelf";
     bgClass = "alerta";
   } else {
-    nivel = "Shelf Crítico";
-    bgClass = "critico";
+    nivel = "Shelf Ótimo";
+    bgClass = "otimo";
   }
 
   function formatDDMMYY(date) {
@@ -55,7 +56,8 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
       <p><strong>Data de Vencimento (estimada):</strong> ${formatDDMMYY(dataVencimento)}</p>
       <p><strong>Dias Restantes:</strong> ${diasRestantes} dias</p>
       <p><strong>Classificação Shelf:</strong> ${nivel} (${porcentagem}%)</p>
-      ${porcentagem <= 60 ? '<p style="color:red;"><strong>DATA CRÍTICA</strong></p>' : ''}
+      ${mensagemCritica}
     </div>
   `;
 });
+
