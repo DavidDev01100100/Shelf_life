@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Consulta de Shelf Life</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body id="body">
   <header>
-    <img src="logo-mdias-branco.png" alt="Logo M.Dias" class="logo">
+    <img src="logo-mdias-branco.png" alt="Logo M.Dias" class="logo" />
     <h1>Consulta de Shelf Life</h1>
   </header>
 
   <main>
     <form id="shelfForm">
       <label for="sku" class="animated-label">SKU:</label>
-      <input type="text" id="sku" name="sku" required>
+      <input type="text" id="sku" name="sku" required />
 
       <label for="dataFabricacao" class="animated-label">Data de Fabricação:</label>
-      <input type="date" id="dataFabricacao" name="dataFabricacao" required>
+      <div class="input-wrapper">
+        <input
+          type="date"
+          id="dataFabricacao"
+          name="dataFabricacao"
+          placeholder="dd/mm/aa"
+          required
+        />
+      </div>
 
       <button type="submit">Consultar</button>
     </form>
@@ -27,7 +35,7 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 David Alves. Todos os direitos reservados.</p>
+    <p>&copy; 2025 David Alves - Todos os direitos reservados.</p>
   </footer>
 
   <script src="produtos_formatados.js"></script>
