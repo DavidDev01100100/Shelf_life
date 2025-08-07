@@ -2,8 +2,8 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
   event.preventDefault();
 
   const sku = document.getElementById('sku').value.trim();
-  const dataVencimentoRaw = document.getElementById('dataFabricacao').value;
-  const dataVencimento = new Date(dataVencimentoRaw);
+  const dataFabricacaoRaw = document.getElementById('dataFabricacao').value;
+  const dataFabricacao = new Date(dataFabricacaoRaw);
   const produto = produtos.find(p => String(p.SKU) === sku);
 
   const resultadoDiv = document.getElementById('resultado');
@@ -17,12 +17,12 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
   }
 
   const diasShelf = parseInt(produto.DiasVencer, 10);
-
-  const dataFabricacao = new Date(dataVencimento);
-  dataFabricacao.setDate(dataFabricacao.getDate() - diasShelf);
+  const dataVencimento = new Date(dataFabricacao);
+  dataVencimento.setDate(dataVencimento.getDate() + diasShelf);
 
   const hoje = new Date();
-  const diasRestantes = Math.floor((dataVencimento - hoje) / (1000 * 60 * 60 * 24));
+  const diasPassados = Math.floor((hoje - dataFabricacao) / (1000 * 60 * 60 * 24));
+  const diasRestantes = diasShelf - diasPassados;
   const porcentagem = Math.max(0, Math.min(100, Math.floor((diasRestantes / diasShelf) * 100)));
 
   let nivel = "";
@@ -31,7 +31,7 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
   if (porcentagem >= 80) {
     nivel = "Shelf Ótimo";
     bgClass = "otimo";
-  } else if (porcentagem >= 60) {
+  } else if (porcentagem >= 61) {
     nivel = "Alerta Shelf";
     bgClass = "alerta";
   } else {
@@ -51,11 +51,11 @@ document.getElementById('shelfForm').addEventListener('submit', function(event) 
     <div class="shelf-box">
       <p><strong>SKU:</strong> ${produto.SKU}</p>
       <p><strong>Descrição:</strong> ${produto.Descricao}</p>
-      <p><strong>Data de Fabricação (estimada):</strong> ${formatDDMMYY(dataFabricacao)}</p>
-      <p><strong>Data de Vencimento:</strong> ${formatDDMMYY(dataVencimento)}</p>
+      <p><strong>Data de Fabricação:</strong> ${formatDDMMYY(dataFabricacao)}</p>
+      <p><strong>Data de Vencimento (estimada):</strong> ${formatDDMMYY(dataVencimento)}</p>
       <p><strong>Dias Restantes:</strong> ${diasRestantes} dias</p>
       <p><strong>Classificação Shelf:</strong> ${nivel} (${porcentagem}%)</p>
+      ${porcentagem <= 60 ? '<p style="color:red;"><strong>DATA CRÍTICA</strong></p>' : ''}
     </div>
   `;
 });
-
