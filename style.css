@@ -1,11 +1,9 @@
-/* Reset básico */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Corpo com estilo futurista */
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #001F54;
@@ -19,7 +17,6 @@ body {
   background-size: 40%;
 }
 
-/* Cabeçalho */
 header {
   text-align: center;
   padding: 20px;
@@ -31,14 +28,12 @@ header {
   margin: 0 auto 10px;
 }
 
-/* Conteúdo principal */
 main {
   flex: 1;
   padding: 20px;
   backdrop-filter: blur(6px);
 }
 
-/* Formulário centralizado com animação suave */
 form {
   display: flex;
   flex-direction: column;
@@ -52,7 +47,6 @@ form {
   box-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
 
-/* Label animada */
 .animated-label {
   text-align: center;
   font-weight: bold;
@@ -67,26 +61,17 @@ form {
   }
 }
 
-/* Inputs */
 input[type="text"],
-input[type="date"],
 button {
   padding: 12px;
-  font-size: 1em;
+  font-size: 1.1em;
   border: none;
   border-radius: 6px;
   width: 100%;
+  max-width: 300px;
+  text-align: center;
 }
 
-/* Input de data com estilo e ícone nativo */
-input[type="date"] {
-  background-color: #f2f2f2;
-  color: #333;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Botão */
 button {
   background-color: #007bff;
   color: white;
@@ -98,7 +83,6 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* Resultado */
 #resultado {
   max-width: 600px;
   margin: 0 auto;
@@ -107,13 +91,11 @@ button:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Texto do resultado */
 .shelf-box p {
   margin: 10px 0;
   font-size: 1.1em;
 }
 
-/* Rodapé */
 footer {
   text-align: center;
   padding: 15px;
@@ -121,7 +103,6 @@ footer {
   font-size: 0.9em;
 }
 
-/* Cores para status */
 .critico {
   background-color: #ff2800;
   color: white;
@@ -137,14 +118,12 @@ footer {
   color: white;
 }
 
-/* Mensagem crítica */
 #resultado p[style*="color:red"] {
   font-size: 1.2em;
   text-align: center;
   margin-top: 10px;
 }
 
-/* Responsividade */
 @media (max-width: 600px) {
   .logo {
     max-width: 100px;
@@ -158,6 +137,3 @@ footer {
     font-size: 1em;
   }
 }
-
-
-
