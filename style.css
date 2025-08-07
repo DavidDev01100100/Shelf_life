@@ -1,5 +1,12 @@
-body {
+/* Reset básico */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+/* Corpo com estilo futurista */
+body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #001F54;
   color: white;
@@ -12,6 +19,7 @@ body {
   background-size: 40%;
 }
 
+/* Cabeçalho */
 header {
   text-align: center;
   padding: 20px;
@@ -23,94 +31,89 @@ header {
   margin: 0 auto 10px;
 }
 
+/* Conteúdo principal */
 main {
   flex: 1;
   padding: 20px;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
 }
 
+/* Formulário centralizado com animação suave */
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto 30px;
   gap: 15px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
 
-label {
+/* Label animada */
+.animated-label {
   text-align: center;
   font-weight: bold;
+  font-size: 1.1em;
   opacity: 0;
-  animation: fadeIn 2s ease-in forwards;
+  animation: fadeIn 1s forwards;
 }
 
-.input-wrapper {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
 
+/* Inputs */
 input[type="text"],
 input[type="date"],
 button {
-  width: 100%;
   padding: 12px;
   font-size: 1em;
   border: none;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  border-radius: 6px;
+  width: 100%;
 }
 
-input:focus, button:focus {
-  outline: none;
-  transform: scale(1.03);
-}
-
+/* Input de data com estilo e ícone nativo */
 input[type="date"] {
-  appearance: none;
-  -webkit-appearance: none;
-  text-align: center;
-  padding-right: 36px;
-  background-color: #fff;
-  color: #000;
+  background-color: #f2f2f2;
+  color: #333;
   font-weight: bold;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-  position: absolute;
-  right: 10px;
-  color: transparent;
-  background: url('data:image/svg+xml;utf8,<svg fill="black" viewBox="0 0 24 24" height="20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-1.99.9-1.99 2L3 20c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>') no-repeat;
-  background-size: 20px 20px;
   cursor: pointer;
 }
 
+/* Botão */
 button {
-  background-color: #00aaff;
+  background-color: #007bff;
   color: white;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #0088cc;
+  background-color: #0056b3;
 }
 
+/* Resultado */
 #resultado {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: rgba(255, 255, 255, 0.1);
-  animation: fadeIn 2s ease-in forwards;
 }
 
+/* Texto do resultado */
 .shelf-box p {
-  margin: 8px 0;
+  margin: 10px 0;
   font-size: 1.1em;
 }
 
+/* Rodapé */
 footer {
   text-align: center;
   padding: 15px;
@@ -118,7 +121,7 @@ footer {
   font-size: 0.9em;
 }
 
-/* Classificações de shelf */
+/* Cores para status */
 .critico {
   background-color: #ff2800;
   color: white;
@@ -134,13 +137,14 @@ footer {
   color: white;
 }
 
-/* Animação */
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(-10px); }
-  100% { opacity: 1; transform: translateY(0); }
+/* Mensagem crítica */
+#resultado p[style*="color:red"] {
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: 10px;
 }
 
-/* Responsivo */
+/* Responsividade */
 @media (max-width: 600px) {
   .logo {
     max-width: 100px;
@@ -150,9 +154,10 @@ footer {
     width: 90%;
   }
 
-  input[type="text"],
-  input[type="date"],
-  button {
-    font-size: 0.95em;
+  input, button {
+    font-size: 1em;
   }
 }
+
+
+
