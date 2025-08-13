@@ -42,7 +42,7 @@ document.getElementById('shelfForm').addEventListener('submit', function (event)
   } else {
     nivel = "Shelf Crítico";
     bgClass = "critico";
-    dataCriticaMsg = `<p style="color:red"><strong>DATA CRÍTICA</strong></p>`;
+    dataCriticaMsg = `<p class="data-critica">DATA CRÍTICA</p>`;
   }
 
   function formatDDMMYY(date) {
@@ -79,4 +79,5 @@ document.getElementById('dataVencimento').addEventListener('input', function (e)
   }
   e.target.value = input;
 });
+
 
