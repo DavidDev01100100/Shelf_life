@@ -158,3 +158,22 @@ footer {
     font-size: 1em;
   }
 }
+
+.data-critica {
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.4em;
+  animation: neonBlink 1s infinite alternate;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #ff00de,
+    0 0 20px #ff00de,
+    0 0 40px #ff00de;
+}
+
+@keyframes neonBlink {
+  0% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
