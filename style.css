@@ -160,17 +160,35 @@ footer {
 }
 
 .data-critica {
-  color: black;
-  font-weight: bold;
-  text-align: center;
-  font-size: 1.4em;
-  animation: neonBlink 1s infinite alternate;
-  text-shadow:
-    0 0 5px #fff,
-    0 0 10px #ff00de,
-    0 0 20px #ff00de,
-    0 0 40px #ff00de;
+    font-size: 42px; /* Maior tamanho */
+    font-weight: bold; /* Negrito */
+    color: black; /* Cor preta */
+    text-shadow: 
+        0 0 10px #fff,
+        0 0 20px #fff,
+        0 0 40px #00ffcc,
+        0 0 80px #00ffcc,
+        0 0 160px #00ffcc; /* Brilho mais intenso */
+    animation: piscarNeon 0.8s infinite alternate; /* Pisca mais rápido */
+    text-align: center; /* Centraliza */
 }
+
+@keyframes piscarNeon {
+    0% {
+        opacity: 1;
+        text-shadow: 
+            0 0 10px #fff,
+            0 0 20px #fff,
+            0 0 40px #00ffcc,
+            0 0 80px #00ffcc,
+            0 0 160px #00ffcc;
+    }
+    100% {
+        opacity: 0.6;
+        text-shadow: none;
+    }
+}
+
 
 @keyframes neonBlink {
   0% { opacity: 1; }
