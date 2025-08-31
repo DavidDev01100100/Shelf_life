@@ -52,8 +52,16 @@ document.getElementById('shelfForm').addEventListener('submit', function (event)
     return `${dd}/${mm}/${yy}`;
   }
 
+  // Cálculo ajustado da data de fabricação com mesmo dia do mês
   const dataFabricacao = new Date(dataVencimento);
+  const diaVencimento = dataVencimento.getDate();
+
+  // Subtrai shelf life em dias
   dataFabricacao.setDate(dataFabricacao.getDate() - diasShelf);
+
+  // Ajusta para manter o mesmo "dia" da data de vencimento, se possível
+  const mesCorrigido = dataFabricacao.getMonth();
+  dataFabricacao.setDate(Math.min(diaVencimento, new Date(dataFabricacao.getFullYear(), mesCorrigido + 1, 0).getDate()));
 
   body.className = bgClass;
   resultadoDiv.innerHTML = `
@@ -79,5 +87,4 @@ document.getElementById('dataVencimento').addEventListener('input', function (e)
   }
   e.target.value = input;
 });
-
 
