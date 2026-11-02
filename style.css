@@ -195,3 +195,171 @@ footer {
   100% { opacity: 0.3; }
 }
 
+
+/* ==========================================================
+   Cadastro de novos itens (botão + modal protegido por senha)
+   ========================================================== */
+
+.acoes {
+  max-width: 500px;
+  margin: -10px auto 30px;
+}
+
+button.btn-novo-item {
+  background-color: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  font-weight: bold;
+}
+
+button.btn-novo-item:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal {
+  margin: auto;
+  width: min(92vw, 440px);
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  background-color: #0a2a66;
+  color: #fff;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+/* Anula o estilo genérico de "form" só dentro do modal */
+.modal .modal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.modal .modal-form[hidden],
+.msg[hidden] {
+  display: none;
+}
+
+.modal h2 {
+  font-size: 1.3em;
+  text-align: center;
+}
+
+.modal-texto {
+  text-align: center;
+  opacity: 0.85;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.modal-form input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1em;
+  border: none;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #111;
+}
+
+.modal-botoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.modal-botoes button {
+  flex: 1;
+  font-weight: bold;
+}
+
+.modal-botoes .btn-cancelar {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.modal-botoes .btn-cancelar:hover {
+  background-color: rgba(255, 255, 255, 0.28);
+}
+
+.msg {
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 0.95em;
+  text-align: center;
+}
+
+.msg-erro {
+  background: rgba(255, 40, 0, 0.2);
+  border: 1px solid #ff6b57;
+  color: #ffd2cb;
+}
+
+.msg-ok {
+  background: rgba(0, 200, 90, 0.2);
+  border: 1px solid #3ddc84;
+  color: #c9ffe0;
+}
+
+/* Esconde o botão "Novo item" enquanto um resultado de consulta está na tela */
+.acoes:has(+ #resultado .shelf-box) {
+  display: none;
+}
+
+/* Campo de senha com botão "mostrar/ocultar" */
+.campo-senha {
+  position: relative;
+}
+
+.campo-senha input {
+  padding-right: 48px;
+}
+
+.campo-senha .btn-olho {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #555;
+  border-radius: 6px;
+}
+
+.campo-senha .btn-olho:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #111;
+}
+
+.campo-senha .btn-olho:focus-visible {
+  outline: 2px solid #007bff;
+}
+
+/* Mostra só o ícone correspondente ao estado atual */
+.campo-senha .icone-olho-cortado,
+.campo-senha .btn-olho[aria-pressed="true"] .icone-olho {
+  display: none;
+}
+
+.campo-senha .btn-olho[aria-pressed="true"] .icone-olho-cortado {
+  display: block;
+}
