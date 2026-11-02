@@ -9,7 +9,7 @@
 <body id="body">
   <header>
     <img src="logo-mdias-branco.png" alt="Logo M.Dias" class="logo"/>
-    <h1>Consulta de Shelf Life</h1>
+    <h1>Consulta Shelf Life 2.0</h1>
   </header>
 
   <main>
@@ -30,8 +30,62 @@
       <button type="submit">Consultar</button>
     </form>
 
+    <div class="acoes">
+      <button type="button" id="btnNovoItem" class="btn-novo-item">+ Novo item</button>
+    </div>
+
     <div id="resultado"></div>
   </main>
+
+  <dialog id="modalCadastro" class="modal" aria-labelledby="tituloSenha">
+    <!-- Etapa 1: senha -->
+    <form id="formSenha" class="modal-form" autocomplete="off">
+      <h2 id="tituloSenha">Acesso restrito</h2>
+      <p class="modal-texto">Informe a senha para cadastrar novos itens.</p>
+      <div class="campo">
+        <label for="senhaCadastro">Senha:</label>
+        <div class="campo-senha">
+          <input type="password" id="senhaCadastro" required placeholder="Digite a senha" />
+          <button type="button" id="btnVerSenha" class="btn-olho" aria-label="Mostrar senha" aria-pressed="false">
+            <svg class="icone-olho" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg class="icone-olho-cortado" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17.94 17.94A10.9 10.9 0 0 1 12 19c-7 0-11-7-11-7a19.8 19.8 0 0 1 5.06-5.94M9.9 4.24A10.9 10.9 0 0 1 12 4c7 0 11 7 11 7a19.9 19.9 0 0 1-3.17 4.19M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <p id="erroSenha" class="msg msg-erro" role="alert" hidden></p>
+      <div class="modal-botoes">
+        <button type="submit">Entrar</button>
+        <button type="button" class="btn-cancelar" data-fechar>Cancelar</button>
+      </div>
+    </form>
+
+    <!-- Etapa 2: cadastro do item -->
+    <form id="formNovoItem" class="modal-form" autocomplete="off" hidden>
+      <h2>Novo item</h2>
+      <div class="campo">
+        <label for="novoSku">SKU:</label>
+        <input type="text" id="novoSku" inputmode="numeric" required placeholder="Somente números" />
+      </div>
+      <div class="campo">
+        <label for="novaDescricao">Descrição:</label>
+        <input type="text" id="novaDescricao" required maxlength="120" placeholder="Descrição do produto" />
+      </div>
+      <div class="campo">
+        <label for="novosDias">Shelf life (dias):</label>
+        <input type="number" id="novosDias" required min="1" max="3650" placeholder="Ex.: 240" />
+      </div>
+      <p id="erroItem" class="msg msg-erro" role="alert" hidden></p>
+      <p id="okItem" class="msg msg-ok" role="status" hidden></p>
+      <div class="modal-botoes">
+        <button type="submit">Salvar item</button>
+        <button type="button" class="btn-cancelar" data-fechar>Fechar</button>
+      </div>
+    </form>
+  </dialog>
 
   <footer>
     <p>&copy; 2025 David Alves. Todos os direitos reservados.</p>
@@ -39,6 +93,6 @@
 
   <script src="produtos_formatados.js"></script>
   <script src="script.js"></script>
+  <script src="cadastro.js"></script>
 </body>
 </html>
-
