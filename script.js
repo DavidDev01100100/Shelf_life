@@ -4,10 +4,19 @@ document.getElementById('shelfForm').addEventListener('submit', function (event)
   const sku = document.getElementById('sku').value.trim();
   const dataVencimentoRaw = document.getElementById('dataVencimento').value;
 
+  // Interpreta DD/MM/AA no horário LOCAL (evita o deslocamento de fuso do
+  // formato ISO "AAAA-MM-DD", que é lido como UTC) e valida a data.
+  // Retorna null se a data for incompleta ou não existir (ex.: 31/02/26).
   function parseDateBR(dataStr) {
-    const [dd, mm, yy] = dataStr.split('/');
-    const fullYear = Number(yy) < 50 ? '20' + yy : '19' + yy;
-    return new Date(`${fullYear}-${mm}-${dd}`);
+    if (!/^\d{2}\/\d{2}\/\d{2}$/.test(dataStr)) return null;
+    const [dd, mm, yy] = dataStr.split('/').map(Number);
+    const fullYear = yy < 50 ? 2000 + yy : 1900 + yy;
+    const data = new Date(fullYear, mm - 1, dd);
+    const existe =
+      data.getFullYear() === fullYear &&
+      data.getMonth() === mm - 1 &&
+      data.getDate() === dd;
+    return existe ? data : null;
   }
 
   const dataVencimento = parseDateBR(dataVencimentoRaw);
@@ -17,6 +26,12 @@ document.getElementById('shelfForm').addEventListener('submit', function (event)
   const body = document.getElementById('body');
   resultadoDiv.innerHTML = "";
 
+  if (!dataVencimento) {
+    resultadoDiv.innerHTML = "<p>Data inválida. Use o formato DD/MM/AA com uma data existente.</p>";
+    body.className = "";
+    return;
+  }
+
   if (!produto) {
     resultadoDiv.innerHTML = "<p>Produto não encontrado.</p>";
     body.className = "";
@@ -24,9 +39,11 @@ document.getElementById('shelfForm').addEventListener('submit', function (event)
   }
 
   const diasShelf = parseInt(produto.DiasVencer, 10);
-  const hoje = new Date();
+  // "Hoje" à meia-noite local, para contar dias inteiros entre duas datas
+  const agora = new Date();
+  const hoje = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate());
 
-  const diasRestantes = Math.floor((dataVencimento - hoje) / (1000 * 60 * 60 * 24));
+  const diasRestantes = Math.round((dataVencimento - hoje) / (1000 * 60 * 60 * 24));
   const porcentagem = Math.max(0, Math.min(100, Math.floor((diasRestantes / diasShelf) * 100)));
 
   let nivel = "";
@@ -87,4 +104,3 @@ document.getElementById('dataVencimento').addEventListener('input', function (e)
   }
   e.target.value = input;
 });
-
